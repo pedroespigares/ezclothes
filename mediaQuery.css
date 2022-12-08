@@ -1,0 +1,162 @@
+@media screen and (min-width: 1200px) and (max-width: 1600px){
+
+    /* Media query para pantallas de portatil */
+
+    header > nav{
+        grid-area: 1 / 6 / 2 / 7; 
+    }
+
+    ul.menu{
+        gap: 2.5em;
+        font-size: 2rem;
+    }
+
+    header .fa-user, header .fa-shopping-cart{
+        scale: 3;
+    }
+
+    header .login_cart{
+        gap: 5rem;
+    }
+}
+
+@media screen and (min-width: 825px) and (max-width: 1200px){
+
+    /* Media query para pantallas de tablet */
+
+    header .logo{
+        grid-area: 1 / 6 / 2 / 7; 
+    }
+
+    header > nav{
+        grid-area: 2 / 6 / 3 / 7;
+        padding-bottom: 4rem;
+    }
+
+    ul.menu{
+        gap: 2.5em;
+        font-size: 2rem;
+    }
+
+    header .fa-user, header .fa-shopping-cart{
+        scale: 3;
+    }
+
+    header .login_cart{
+        grid-area: 3 / 6 / 4 / 7;
+        padding-bottom: 5rem;
+        gap: 4rem;
+    }
+
+    #christmas{
+        grid-row: 18 / 19;
+    }
+
+    #products, #cart, #login_signup{
+        grid-row: 21 / 22;
+    }
+}
+
+@media screen and (max-width: 824px){
+
+    /* Media query para pantallas de movil (a ver si lo arreglo)*/
+
+    header .login_cart{
+        grid-area: 1 / 7 / 2 / 11; 
+    
+        display: flex;
+        gap: 6rem;
+        place-items: center;
+    }
+
+    header > nav{
+        grid-area: 1 / 11 / 2 / 12;
+    }
+
+
+    .checkbtn{
+        display: block;
+    }
+
+    .fixed_position{
+        /* Esto es para que cuando aparezca la lista del menu hamburguesa no se pueda scrollear */
+        overflow: hidden;
+    }
+
+    nav ul.menu{
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--background-color);
+        top: 7em;
+        left: -200%;
+        text-align: center;
+        transition: all 0.5s;
+        gap: 2.5rem;
+    }
+
+    nav .open ~ ul.menu{
+        left: 0;
+    }
+
+    nav ul li{
+        display: block;
+        padding: 1rem;
+        line-height: 1.875em;
+    }
+
+    nav ul li a:hover, nav ul li a:active{
+        font-size: 1.5em;
+        padding: 0.5rem 10rem;
+    }
+
+    .hamburger-lines {
+        
+        height: 2em;
+        width: 2.5em;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        border-radius: 50%;
+    }
+
+    .hamburger-lines .line {
+        height: 0.2em;
+        width: 100%;
+        border-radius: 10px;
+        background-color: var(--text-color);
+    }
+    
+    .hamburger-lines .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
+      }
+    
+    .hamburger-lines .line2 {
+        transition: transform 0.2s ease-in-out;
+      }
+      
+    .hamburger-lines .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
+    }
+    
+    /* Aqui hacemos la animacion de transformar la hamburguesa en una X.
+    El cuando se transforma lo controlo mediante clases en Jquery */
+
+    .open .line1 {
+        transform: rotate(47deg);
+    }
+
+    .open .line2 {
+        transform: scaleY(0);
+    }
+      
+    .open .line3 {
+        transform: rotate(-47deg);
+    }
+}
