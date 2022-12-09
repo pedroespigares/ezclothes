@@ -218,7 +218,7 @@ export class Views {
             }
         })
         
-        $("#subtotal--price").html(`${subtotal}€`);
+        $("#subtotal--price").html(`${subtotal.toFixed(2)}€`);
         total = subtotal + envio;
         $("#total--price").html(`${total.toFixed(2)}€`);
     }
