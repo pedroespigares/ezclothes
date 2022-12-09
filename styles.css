@@ -709,6 +709,10 @@ añadiendo 2% al width de las estrellas */
 }
 
 .login--container a, .signup--container p{
+    font-size: 2rem;
+    font-weight: var(--text-font-weight);
+    color: var(--text-color);
+    text-align: center;
     padding-bottom: 0;
     text-decoration: none;
 }
