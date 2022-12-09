@@ -25,7 +25,7 @@ export class Views {
            <img src="./media/follow_us_2.jpg" alt="Follow Us First Image" id="FU2" class="FU">
            <img src="./media/follow_us_3.jpg" alt="Follow Us First Image" id="FU3" class="FU">
             <div class="follow-us--text">
-                <h1>Síguenos!</h1>
+                <h1>¡Síguenos!</h1>
                 <p>Te esperamos en nuestras redes sociales.
                     Aquí sucede todo. No te lo pierdas.</p>
                 <div class="social-media">
