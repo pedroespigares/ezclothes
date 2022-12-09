@@ -29,16 +29,16 @@ $(document).ready(function() {
     
     controllers.setIntervalForCarrousel(images);
 
-    // El delegate sirve para que sea dinamico, ya que si no se le pone el delegate, no se podria hacer click en los botones 
+    // El on sirve para que sea dinamico, ya que si no se le pone el on, no se podria hacer click en los botones 
     // de las categorias porque no existen al cargar la pagina
 
-    // Es document.delegate junto el selector y el evento que se quiere que se ejecute
+    // Es document .on junto el selector y el evento que se quiere que se ejecute
 
 
 
     // Eventos que llevan a la vista principal
 
-    $(document).delegate(".logo", "click", function() {
+    $(document).on("click", ".logo", function() {
         controllers.changeToMainView(views);
     });
 
@@ -46,19 +46,19 @@ $(document).ready(function() {
 
     // Eventos que llevan a la vista de todos los productos
 
-    $(document).delegate("#carrousel-img", "click", function() {
+    $(document).on("click", "#carrousel-img", function() {
         controllers.changeToAllProductsView(views);
     });
 
-    $(document).delegate("#christmas img", "click", function() {
+    $(document).on("click", "#christmas img", function() {
         controllers.changeToAllProductsView(views);
     });
     
-    $(document).delegate("#productsLink", "click", function() {
+    $(document).on("click", "#productsLink", function() {
         controllers.changeToAllProductsView(views);
     });
 
-    $(document).delegate("#seeAllProductsButton", "click", function() {
+    $(document).on("click", "#seeAllProductsButton", function() {
         controllers.changeToAllProductsView(views);
     });
 
@@ -66,11 +66,11 @@ $(document).ready(function() {
 
     // Eventos que controlan el carrousel
 
-    $(document).delegate(".carrousel--btn-left", "click", function() {
+    $(document).on("click", ".carrousel--btn-left", function() {
         controllers.changeImageCarrousel(images, "left");
     });
     
-    $(document).delegate(".carrousel--btn-right", "click", function() {
+    $(document).on("click", ".carrousel--btn-right", function() {
         controllers.changeImageCarrousel(images, "right");
     });
     
@@ -78,19 +78,19 @@ $(document).ready(function() {
 
     // Eventos que llevan a la vista de productos por categoria
     
-    $(document).delegate("#woman", "click", function() {
+    $(document).on("click", "#woman", function() {
         controllers.changeViewsBetweenCategories("woman",views);
     });
     
-    $(document).delegate("#men", "click", function() {
+    $(document).on("click", "#men", function() {
         controllers.changeViewsBetweenCategories("men", views);
     });
     
-    $(document).delegate("#jewelery", "click", function() {
+    $(document).on("click", "#jewelery", function() {
         controllers.changeViewsBetweenCategories("jewelery", views);
     });
     
-    $(document).delegate("#accesories", "click", function() {
+    $(document).on("click", "#accesories", function() {
         controllers.changeViewsBetweenCategories("electronics", views);
     });
     
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
     // Cambiar el orden de los productos al pulsar el boton de ordenar
 
-    $(document).delegate(".sort--button", "click", function() {
+    $(document).on("click", ".sort--button", function() {
         var order = $("#sort").val();
         var category = $("#categoryForSort").val();
         controllers.sortProducts(order, category ,views);
@@ -108,11 +108,11 @@ $(document).ready(function() {
 
     // Evento que llevan a la vista de login y lo manejan, junto a los eventos de correo
 
-    $(document).delegate(".fa-user", "click", function() {
+    $(document).on("click", ".fa-user", function() {
         controllers.changeToLogIn(views);
     });
 
-    $(document).delegate(".LI_form", "submit", function(e) {
+    $(document).on("submit", ".LI_form", function(e) {
         e.preventDefault();
         
         fetch('https://fakestoreapi.com/auth/login',{
@@ -126,7 +126,7 @@ $(document).ready(function() {
             .then(json=>controllers.logIn(json))
     });
 
-    $(document).delegate(".SU_form", "submit", function(e) {
+    $(document).on("submit", ".SU_form", function(e) {
         e.preventDefault();
 
         fetch('https://fakestoreapi.com/users',{
@@ -160,7 +160,7 @@ $(document).ready(function() {
         emailjs.sendForm('service_ysn82m8', 'template_zn2sbrr', '.SU_form')
     });
 
-    $(document).delegate(".NL_form", "submit", function(e) {
+    $(document).on("submit", ".NL_form", function(e) {
         e.preventDefault();
         controllers.newsLetterSuscription();
 
@@ -171,17 +171,17 @@ $(document).ready(function() {
 
     // Evento que llevan a la vista de producto
 
-    $(document).delegate(".product--img", "click", function() {
+    $(document).on("click", ".product--img", function() {
         var ID = $(this).siblings("#product--id--all-products").val();
         controllers.changeToProductView(views, ID);
     });
 
-    $(document).delegate(".product--title", "click", function() {
+    $(document).on("click", ".product--title", function() {
         var ID = $(this).siblings("#product--id--all-products").val();
         controllers.changeToProductView(views, ID);
     });
 
-    $(document).delegate("#cart--title--link", "click", function() {
+    $(document).on("click", "#cart--title--link", function() {
         var ID = $(this).siblings("#product--id--cart").val();
         controllers.changeToProductView(views, ID);
     });
@@ -190,7 +190,7 @@ $(document).ready(function() {
 
     // Eventos que llevan a la vista de carrito y lo manejan
 
-    $(document).delegate(".add-to-cart", "click", function() {
+    $(document).on("click", ".add-to-cart", function() {
         var ID = $(this).siblings("#product--id--single-product").val();
         var size = $(this).siblings(".tallas").children(".size").val();
 
@@ -203,11 +203,11 @@ $(document).ready(function() {
         $(this).effect("bounce", {times: 2}, 1000);
     });
 
-    $(document).delegate(".fa-shopping-cart", "click", function() {
+    $(document).on("click", ".fa-shopping-cart", function() {
         controllers.changeToShoppingCart(views, cart);
     });
 
-    $(document).delegate(".remove-from-cart", "click", function() {
+    $(document).on("click", ".remove-from-cart", function() {
         var ID = $(this).siblings("#product--id--cart").val();
         $(this).parent().fadeOut(500, function() {
             controllers.removeProductFromCart(ID, cart);
@@ -215,26 +215,26 @@ $(document).ready(function() {
         });
     });
 
-    $(document).delegate(".update-from-cart", "click", function() {
+    $(document).on("click", ".update-from-cart", function() {
         var ID = $(this).siblings("#product--id--cart").val();
         var quantity = $(this).siblings("#product--quantity").val();
         controllers.updateProductQuantity(ID, quantity, cart);
         controllers.changeToShoppingCart(views, cart);
     });
 
-    $(document).delegate(".buy", "click", function() {
+    $(document).on("click", ".buy", function() {
         $("#buy--message").show(200);
     });
 
     // Evento para el menu hamburguesa
 
-    $(document).delegate(".hamburger-lines", "click", function() {
+    $(document).on("click", ".hamburger-lines", function() {
         $(".checkbtn").toggleClass("open");
         $("body").toggleClass("fixed_position");
       });
     
       // Cerrar menu al pulsar enlace
-    $(document).delegate(".menu a", "click", function() {
+    $(document).on("click", ".menu a", function() {
         $(".checkbtn").removeClass("open");
         $("body").removeClass("fixed_position");
       });
