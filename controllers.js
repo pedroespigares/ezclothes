@@ -145,4 +145,12 @@ export class Controllers{
     changeToShoppingCart(views, cart) {
         views.cartView(cart);
     }
+
+    changeToCheckout(views){
+        views.checkoutView();
+    }
+
+    changeToPayment(views){
+        views.paymentView();
+    }
 }

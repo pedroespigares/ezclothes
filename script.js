@@ -160,13 +160,6 @@ $(document).ready(function() {
         emailjs.sendForm('service_ysn82m8', 'template_zn2sbrr', '.SU_form')
     });
 
-    $(document).on("submit", ".NL_form", function(e) {
-        e.preventDefault();
-        controllers.newsLetterSuscription();
-
-        emailjs.sendForm('service_ysn82m8', 'template_x1zagzk', '.NL_form')
-    });
-
 
 
     // Evento que llevan a la vista de producto
@@ -223,7 +216,14 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".buy", function() {
+        controllers.changeToCheckout(views);
+    });
+
+    $(document).on("submit", ".checkout--form--container", function(e) {
+        e.preventDefault();
         $("#buy--message").show(200);
+
+        emailjs.sendForm('service_ysn82m8', 'template_x1zagzk', '.checkout--form--container')
     });
 
     // Evento para el menu hamburguesa
