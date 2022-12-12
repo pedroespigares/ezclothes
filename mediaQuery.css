@@ -18,6 +18,10 @@
     header .login_cart{
         gap: 5rem;
     }
+
+    #christmas{
+        grid-row: 9 / 11;
+    }
 }
 
 @media screen and (min-width: 825px) and (max-width: 1200px){

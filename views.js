@@ -198,8 +198,10 @@ export class Views {
                         <p class="price">${product.price}€</p>
                         <p>${product.size}</p>
                         <input id="product--quantity" type="number" min="1" value="${product.quantity}">
-                        <button class="update-from-cart">Actualizar</button>
-                        <button class="remove-from-cart">Eliminar</button>
+                        <div class="actions">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
                     </li>
                 `);
             } else {
@@ -210,8 +212,10 @@ export class Views {
                         <h3 id="cart--title--link">${product.title}</h3>
                         <p class="price">${product.price}€</p>
                         <input id="product--quantity" type="number" min="1" value="${product.quantity}">
-                        <button class="update-from-cart">Actualizar</button>
-                        <button class="remove-from-cart">Eliminar</button>
+                        <div class="actions">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
                     </li>
                 `);
             }
@@ -233,6 +237,7 @@ export class Views {
                     <input id="LI_username" name="LI_username" type="text" placeholder="Nombre de usuario" required>
                     <input id="LI_psw" name="LI_psw" type="password" placeholder="Contraseña" required>
                     <a>¿Has olvidado tu contraseña?</a>
+                    <a id="activate_SU">¿No tienes cuenta? ¡Regístrate!</a>
                     <p id="login--message">Sesión iniciada</p>
                     <button type="submit">Iniciar sesión</button>
                 </form>
@@ -241,14 +246,15 @@ export class Views {
                 <h1>¿No tienes cuenta?</h1>
                 <p>Regístrate y disfruta de todas las ventajas de ser cliente de EzClothes</p>
                 <form class="SU_form">
-                    <input id="SU_username" name="SU_username" type="text" placeholder="Nombre de usuario" required>
-                    <input id="SU_name" name="SU_name" type="text" placeholder="Nombre" required>
-                    <input id="SU_surname" name="SU_surname" type="text" placeholder="Apellidos" required>
-                    <input id="SU_phone" name="SU_phone" type="tel" placeholder="Teléfono (123-456-789)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
-                    <input id="SU_mail" name="SU_mail" type="email" placeholder="tucorreo@dominio.com" required>
-                    <input id="SU_psw" name="SU_psw" type="password" placeholder="Contraseña" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
+                    <input id="SU_username" name="SU_username" type="text" placeholder="Nombre de usuario" disabled required>
+                    <input id="SU_name" name="SU_name" type="text" placeholder="Nombre" disabled required>
+                    <input id="SU_surname" name="SU_surname" type="text" placeholder="Apellidos" disabled required>
+                    <input id="SU_phone" name="SU_phone" type="tel" placeholder="Teléfono (123-456-789)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" disabled required>
+                    <input id="SU_mail" name="SU_mail" type="email" placeholder="tucorreo@dominio.com" disabled required>
+                    <input id="SU_psw" name="SU_psw" type="password" placeholder="Contraseña" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" disabled required>
+                    <a id="activate_LI">¿Ya tienes cuenta? ¡Inicia sesión!</a>
                     <p id="signup--message">¡Registro realizado con éxito! Para activar su cuenta, confirme su correo</p>
-                    <button type="submit">Crear cuenta</button>
+                    <button type="submit" disabled>Crear cuenta</button>
                 </form>
         </section>
         </div>`);

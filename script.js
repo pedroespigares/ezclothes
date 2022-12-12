@@ -160,6 +160,19 @@ $(document).ready(function() {
         emailjs.sendForm('service_ysn82m8', 'template_zn2sbrr', '.SU_form')
     });
 
+    $(document).on("click", "#activate_SU", function() {
+        $("input:disabled").removeAttr("disabled");
+        $(".signup--container h1, .signup--container button, .signup--container p, .signup--container a").css("opacity", "1");
+        $(".login--container h1, .login--container button, .login--container p, .login--container a").css("opacity", "0.3");
+        $(".login--container input").attr("disabled", "disabled");
+    });
+
+    $(document).on("click", "#activate_LI", function() {
+        $("input:disabled").removeAttr("disabled");
+        $(".login--container h1, .login--container button, .login--container p, .login--container a").css("opacity", "1");
+        $(".signup--container h1, .signup--container button, .signup--container p, .signup--container a").css("opacity", "0.3");
+        $(".signup--container input").attr("disabled", "disabled");
+    });
 
 
     // Evento que llevan a la vista de producto
@@ -200,17 +213,17 @@ $(document).ready(function() {
         controllers.changeToShoppingCart(views, cart);
     });
 
-    $(document).on("click", ".remove-from-cart", function() {
-        var ID = $(this).siblings("#product--id--cart").val();
-        $(this).parent().fadeOut(500, function() {
+    $(document).on("click", ".fa-trash", function() {
+        var ID = $(this).parents().siblings("#product--id--cart").val();
+        $(this).parent().parent().fadeOut(500, function() {
             controllers.removeProductFromCart(ID, cart);
             controllers.changeToShoppingCart(views, cart);
         });
     });
 
-    $(document).on("click", ".update-from-cart", function() {
-        var ID = $(this).siblings("#product--id--cart").val();
-        var quantity = $(this).siblings("#product--quantity").val();
+    $(document).on("click", ".fa-arrows-rotate", function() {
+        var ID = $(this).parents().siblings("#product--id--cart").val();
+        var quantity = $(this).parents().siblings("#product--quantity").val();
         controllers.updateProductQuantity(ID, quantity, cart);
         controllers.changeToShoppingCart(views, cart);
     });
@@ -218,6 +231,8 @@ $(document).ready(function() {
     $(document).on("click", ".buy", function() {
         controllers.changeToCheckout(views);
     });
+
+    // Evento que lleva a la vista de checkout y lo maneja
 
     $(document).on("submit", ".checkout--form--container", function(e) {
         e.preventDefault();

@@ -29,6 +29,9 @@
     --box-shadow: 19px 11px 5px -1px rgba(13,13,13,0.44);
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+/* Estilos por defecto de ciertas etiquetas */
+
 button:hover{
     box-shadow: var(--box-shadow);
 }
@@ -76,6 +79,8 @@ input, select{
     border-radius: 0.5rem;
     background-color: var(--background-color);
 }
+
+/* ---------------------------------------------------------------------------------------------- */
 
 
 /* El container tiene el grid inicial donde se van a posicionar los elementos */
@@ -710,7 +715,7 @@ añadiendo 2% al width de las estrellas */
     text-align: center;
 }
 
-.login--container a, .signup--container p{
+.login--container a, .signup--container p, .signup--container a{
     font-size: 2rem;
     font-weight: var(--text-font-weight);
     color: var(--text-color);
@@ -719,7 +724,7 @@ añadiendo 2% al width de las estrellas */
     text-decoration: none;
 }
 
-.login--container a:hover{
+.login--container a:hover, .signup--container a:hover{
     color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
@@ -733,8 +738,27 @@ añadiendo 2% al width de las estrellas */
     align-items: center;
 }
 
+.signup--container h1, 
+.signup--container a, 
+.signup--container p{
+    opacity: 0.3;
+}
+
 .signup--container p{
     padding-bottom: 2rem;
+}
+
+@keyframes opacity{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.opacitiyAnimation{
+    animation: opacity 1s ease-in-out;
 }
 
 .signup--container p#signup--message, .login--container p#login--message, #NL--message{
@@ -770,6 +794,11 @@ input[type="email"]:invalid, input[type="password"]:invalid, input[type="tel"]:i
     border: 2px solid var(--button-color);
 }
 
+input:disabled{
+    background-color: lightgray;
+    opacity: 0.3;
+}
+
 form button {
     font-size: 2.2rem;
     font-weight: var(--title-font-weight);
@@ -779,6 +808,10 @@ form button {
     border-radius: 0.5rem;
     padding: 2rem 3rem;
     margin-top: 1rem;
+}
+
+.signup--container button{
+    opacity: 0.3;
 }
 
 form button:hover{
@@ -983,6 +1016,31 @@ form button:hover{
     background-color: rgb(0, 231, 0);
     transition: var(--transition-time);
     cursor: pointer;
+}
+
+.fa-trash, .fa-arrows-rotate{
+    scale: 4;
+    color: var(--text-color);
+}
+
+.fa-trash:hover, .fa-arrows-rotate:hover{
+    color: var(--hover-color);
+    transition: var(--transition-time);
+    cursor: pointer;
+    scale: 5;
+}
+
+.fa-arrows-rotate:hover{
+    color: lightgreen;
+}
+
+.actions{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 7rem;
+    margin-left: 3rem;
 }
 
 .cart--total{
