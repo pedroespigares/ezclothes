@@ -49,22 +49,44 @@ export class Controllers{
         } else if(category == "electronics"){
             var RealCategory = "electronics";
         }
+
+        $(".container").html("");
+        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+        $(".container").append(loader);
+
         fetch(`https://fakestoreapi.com/products/category/${RealCategory}?sort=${sort}`)
             .then(res=>res.json())
-            .then(json=>views.productsView(json, category));
+            .then(json=>views.productsView(json, category))
+            .then(function(){
+                $(".lds-ring").css("display", "none");
+            });
     }
     
     
     changeToAllProductsView(views, sort="asc") {
+        $(".container").html("");
+        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+        $(".container").append(loader);
+
         fetch(`https://fakestoreapi.com/products?sort=${sort}`)
                 .then(res=>res.json())
                 .then(json=>views.productsView(json))
+                .then(function(){
+                    $(".lds-ring").css("display", "none");
+                });
     }
     
     changeToProductView(views, ID) {
+        $(".container").html("");
+        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+        $(".container").append(loader);
+
         fetch(`https://fakestoreapi.com/products/${ID}`)
                 .then(res=>res.json())
-                .then(json=>views.singleProductView(json));
+                .then(json=>views.singleProductView(json))
+                .then(function(){
+                    $(".lds-ring").css("display", "none");
+                });
     }
 
     sortProducts(order, category, views) {
