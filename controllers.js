@@ -50,43 +50,40 @@ export class Controllers{
             var RealCategory = "electronics";
         }
 
-        $(".container").html("");
-        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
-        $(".container").append(loader);
+        $(".container").css({
+            "opacity": "0.1",
+            "pointer-events": "none",
+        });
+        $(".lds-ring").css("display", "inline-block");
 
         fetch(`https://fakestoreapi.com/products/category/${RealCategory}?sort=${sort}`)
             .then(res=>res.json())
             .then(json=>views.productsView(json, category))
-            .then(function(){
-                $(".lds-ring").css("display", "none");
-            });
     }
     
     
     changeToAllProductsView(views, sort="asc") {
-        $(".container").html("");
-        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
-        $(".container").append(loader);
+        $(".container").css({
+            "opacity": "0.1",
+            "pointer-events": "none",
+        });
+        $(".lds-ring").css("display", "inline-block");
 
         fetch(`https://fakestoreapi.com/products?sort=${sort}`)
                 .then(res=>res.json())
                 .then(json=>views.productsView(json))
-                .then(function(){
-                    $(".lds-ring").css("display", "none");
-                });
     }
     
     changeToProductView(views, ID) {
-        $(".container").html("");
-        let loader = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
-        $(".container").append(loader);
+        $(".container").css({
+            "opacity": "0.1",
+            "pointer-events": "none",
+        });
+        $(".lds-ring").css("display", "inline-block");
 
         fetch(`https://fakestoreapi.com/products/${ID}`)
                 .then(res=>res.json())
                 .then(json=>views.singleProductView(json))
-                .then(function(){
-                    $(".lds-ring").css("display", "none");
-                });
     }
 
     sortProducts(order, category, views) {
@@ -148,16 +145,46 @@ export class Controllers{
         localStorage.cart = JSON.stringify(cart);
     }
     
-    signUp(json){
-        if(json.id == 1 || json.id == 11){
-            $("#signup--message").show(200);
-        }
+    signUp(){
+        fetch('https://fakestoreapi.com/users',{
+            method:"POST",
+            body:JSON.stringify(
+                {
+                    email:'John@gmail.com',
+                    username:'johnd',
+                    password:'m38rmF$',
+                    name:{
+                        firstname:'John',
+                        lastname:'Doe'
+                    },
+                    address:{
+                        city:'kilcoole',
+                        street:'7835 new road',
+                        number:3,
+                        zipcode:'12926-3874',
+                        geolocation:{
+                            lat:'-37.3159',
+                            long:'81.1496'
+                        }
+                    },
+                    phone:'1-570-236-7033'
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=> this.signUpHandler(json));
     }
 
-    logIn(json){
-        if(json.token == "eyJhbGciOiJIUzI1NiIsInR"){
-            $("#login--message").show(200);
-        }
+    logIn(){
+        fetch('https://fakestoreapi.com/auth/login',{
+            method:'POST',
+            body:JSON.stringify({
+                username: "mor_2314",
+                password: "83r5^_"
+            })
+        })
+            .then(res=>res.json())
+            .then(json=>this.logInHandler(json));
     }
 
     newsLetterSuscription(){
@@ -174,5 +201,19 @@ export class Controllers{
 
     changeToPayment(views){
         views.paymentView();
+    }
+
+    signUpHandler(json){
+        if(json.id == 1 || json.id == 11){
+            $("#signup--message").show(200);
+        }
+
+        emailjs.sendForm('service_ysn82m8', 'template_zn2sbrr', '.SU_form')
+    }
+
+    logInHandler(json){
+        if(json.token == "eyJhbGciOiJIUzI1NiIsInR"){
+            $("#login--message").show(200);
+        }
     }
 }

@@ -1,8 +1,10 @@
 import { Views } from "./views.js";
 import {Controllers} from "./controllers.js";
+
 const views = new Views();
 const controllers = new Controllers();
 
+// Inicializacion de emailjs
 emailjs.init('c2I8uIaHDDPg57Fj5');
 
 const images = [
@@ -15,11 +17,13 @@ const images = [
     "./media/carrousel/fondo_azul.jpg",
 ];
 
+var cart;
+
 if(localStorage.getItem("cart") === null) {
-    var cart = [];
+    cart = [];
 }
 else {
-    var cart = JSON.parse(localStorage.getItem("cart"));
+    cart = JSON.parse(localStorage.getItem("cart"));
 }
 
 $(document).ready(function() {
@@ -64,18 +68,6 @@ $(document).ready(function() {
 
 
 
-    // Eventos que controlan el carrousel
-
-    $(document).on("click", ".carrousel--btn-left", function() {
-        controllers.changeImageCarrousel(images, "left");
-    });
-    
-    $(document).on("click", ".carrousel--btn-right", function() {
-        controllers.changeImageCarrousel(images, "right");
-    });
-    
-
-
     // Eventos que llevan a la vista de productos por categoria
     
     $(document).on("click", "#woman", function() {
@@ -99,8 +91,8 @@ $(document).ready(function() {
     // Cambiar el orden de los productos al pulsar el boton de ordenar
 
     $(document).on("click", ".sort--button", function() {
-        var order = $("#sort").val();
-        var category = $("#categoryForSort").val();
+        let order = $("#sort").val();
+        let category = $("#categoryForSort").val();
         controllers.sortProducts(order, category ,views);
     });
     
@@ -114,54 +106,17 @@ $(document).ready(function() {
 
     $(document).on("submit", ".LI_form", function(e) {
         e.preventDefault();
-        
-        fetch('https://fakestoreapi.com/auth/login',{
-            method:'POST',
-            body:JSON.stringify({
-                username: "mor_2314",
-                password: "83r5^_"
-            })
-        })
-            .then(res=>res.json())
-            .then(json=>controllers.logIn(json))
+        controllers.logIn();
     });
 
     $(document).on("submit", ".SU_form", function(e) {
         e.preventDefault();
-
-        fetch('https://fakestoreapi.com/users',{
-            method:"POST",
-            body:JSON.stringify(
-                {
-                    email:'John@gmail.com',
-                    username:'johnd',
-                    password:'m38rmF$',
-                    name:{
-                        firstname:'John',
-                        lastname:'Doe'
-                    },
-                    address:{
-                        city:'kilcoole',
-                        street:'7835 new road',
-                        number:3,
-                        zipcode:'12926-3874',
-                        geolocation:{
-                            lat:'-37.3159',
-                            long:'81.1496'
-                        }
-                    },
-                    phone:'1-570-236-7033'
-                }
-            )
-        })
-            .then(res=>res.json())
-            .then(json=> controllers.signUp(json))
-
-        emailjs.sendForm('service_ysn82m8', 'template_zn2sbrr', '.SU_form')
+        controllers.signUp();
     });
 
     $(document).on("click", "#activate_SU", function() {
         $("input:disabled").removeAttr("disabled");
+        $(".SU_form button:disabled").removeAttr("disabled");
         $(".signup--container h1, .signup--container button, .signup--container p, .signup--container a").css("opacity", "1");
         $(".login--container h1, .login--container button, .login--container p, .login--container a").css("opacity", "0.3");
         $(".login--container input").attr("disabled", "disabled");
@@ -169,6 +124,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#activate_LI", function() {
         $("input:disabled").removeAttr("disabled");
+        $(".LI_form button:disabled").removeAttr("disabled");
         $(".login--container h1, .login--container button, .login--container p, .login--container a").css("opacity", "1");
         $(".signup--container h1, .signup--container button, .signup--container p, .signup--container a").css("opacity", "0.3");
         $(".signup--container input").attr("disabled", "disabled");
@@ -178,17 +134,17 @@ $(document).ready(function() {
     // Evento que llevan a la vista de producto
 
     $(document).on("click", ".product--img", function() {
-        var ID = $(this).siblings("#product--id--all-products").val();
+        let ID = $(this).siblings("#product--id--all-products").val();
         controllers.changeToProductView(views, ID);
     });
 
     $(document).on("click", ".product--title", function() {
-        var ID = $(this).siblings("#product--id--all-products").val();
+        let ID = $(this).siblings("#product--id--all-products").val();
         controllers.changeToProductView(views, ID);
     });
 
     $(document).on("click", "#cart--title--link", function() {
-        var ID = $(this).siblings("#product--id--cart").val();
+        let ID = $(this).siblings("#product--id--cart").val();
         controllers.changeToProductView(views, ID);
     });
 
@@ -197,8 +153,8 @@ $(document).ready(function() {
     // Eventos que llevan a la vista de carrito y lo manejan
 
     $(document).on("click", ".add-to-cart", function() {
-        var ID = $(this).siblings("#product--id--single-product").val();
-        var size = $(this).siblings(".tallas").children(".size").val();
+        let ID = $(this).siblings("#product--id--single-product").val();
+        let size = $(this).siblings(".tallas").children(".size").val();
 
         fetch(`https://fakestoreapi.com/products/${ID}`)
             .then(res=>res.json())
@@ -214,7 +170,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".fa-trash", function() {
-        var ID = $(this).parents().siblings("#product--id--cart").val();
+        let ID = $(this).parents().siblings("#product--id--cart").val();
         $(this).parent().parent().fadeOut(500, function() {
             controllers.removeProductFromCart(ID, cart);
             controllers.changeToShoppingCart(views, cart);
@@ -222,8 +178,8 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".fa-arrows-rotate", function() {
-        var ID = $(this).parents().siblings("#product--id--cart").val();
-        var quantity = $(this).parents().siblings("#product--quantity").val();
+        let ID = $(this).parents().siblings("#product--id--cart").val();
+        let quantity = $(this).parents().siblings("#product--quantity").val();
         controllers.updateProductQuantity(ID, quantity, cart);
         controllers.changeToShoppingCart(views, cart);
     });
@@ -246,11 +202,22 @@ $(document).ready(function() {
     $(document).on("click", ".hamburger-lines", function() {
         $(".checkbtn").toggleClass("open");
         $("body").toggleClass("fixed_position");
-      });
+    });
     
-      // Cerrar menu al pulsar enlace
+    // Cerrar menu al pulsar enlace
     $(document).on("click", ".menu a", function() {
         $(".checkbtn").removeClass("open");
         $("body").removeClass("fixed_position");
-      });
+    });
+
+    // Dark mode
+    $(document).on("click", ".fa-circle-half-stroke", function() {
+        $("body").toggleClass("dark");
+        localStorage.setItem("dark", $("body").hasClass("dark"));
+    });
+
+    // Local storage para dark mode
+    if(localStorage.getItem("dark") == "true") {
+        $("body").toggleClass("dark");
+    }
 });

@@ -1,6 +1,7 @@
 export class Views {
     mainView() {
         $("body").html(`
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div class="container">
         ${this.writeHeader()}
         <section id="christmas">
@@ -70,6 +71,7 @@ export class Views {
         }
         
         $("body").html(`
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div class="container">
         ${this.writeHeader()}
         <section id="products">
@@ -111,6 +113,7 @@ export class Views {
     singleProductView(product) {
         if(product.category == "men's clothing" || product.category == "women's clothing") {
             $("body").html(`
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <div class="container">
             ${this.writeHeader()}
             <section id="single--product">
@@ -141,6 +144,7 @@ export class Views {
             ${this.writeFooter()}`);
         } else {
             $("body").html(`
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <div class="container">
             ${this.writeHeader()}
             <section id="single--product">
@@ -149,7 +153,10 @@ export class Views {
                     <input id="product--id--single-product" type="hidden" value="${product.id}">
                     <h1>${product.title}</h1>
                     <span>${product.category}</span>
-                    <p>${product.rating.count} opiniones</p>
+                    <div class="rating">
+                        <i data-star="${product.rating.rate}"></i>
+                        <p>(${product.rating.count})</p>
+                    </div>
                     <p class="price">${product.price}€</p>
                     <p>${product.description}</p>
                     <button class="add-to-cart">Añadir al carrito</button>
@@ -235,7 +242,7 @@ export class Views {
                 <h1>Soy Cliente/a</h1>
                 <form class="LI_form">
                     <input id="LI_username" name="LI_username" type="text" placeholder="Nombre de usuario" required>
-                    <input id="LI_psw" name="LI_psw" type="password" placeholder="Contraseña" required>
+                    <input id="LI_psw" name="LI_psw" type="password" placeholder="Contraseña" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                     <a>¿Has olvidado tu contraseña?</a>
                     <a id="activate_SU">¿No tienes cuenta? ¡Regístrate!</a>
                     <p id="login--message">Sesión iniciada</p>
@@ -249,7 +256,7 @@ export class Views {
                     <input id="SU_username" name="SU_username" type="text" placeholder="Nombre de usuario" disabled required>
                     <input id="SU_name" name="SU_name" type="text" placeholder="Nombre" disabled required>
                     <input id="SU_surname" name="SU_surname" type="text" placeholder="Apellidos" disabled required>
-                    <input id="SU_phone" name="SU_phone" type="tel" placeholder="Teléfono (123-456-789)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" disabled required>
+                    <input id="SU_phone" name="SU_phone" type="tel" placeholder="Teléfono (123456789)" pattern="[0-9]{9}" maxlength="9" disabled required>
                     <input id="SU_mail" name="SU_mail" type="email" placeholder="tucorreo@dominio.com" disabled required>
                     <input id="SU_psw" name="SU_psw" type="password" placeholder="Contraseña" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" disabled required>
                     <a id="activate_LI">¿Ya tienes cuenta? ¡Inicia sesión!</a>
@@ -273,7 +280,7 @@ export class Views {
                         <h3>Envío</h3>
                             <input id="checkout--name" name="checkout--name" type="text" placeholder="Nombre" required>
                             <input id="checkout--surname" name="checkout--surname" type="text" placeholder="Apellidos" required>
-                            <input id="checkout--phone" name="checkout--phone" type="tel" placeholder="Teléfono (123-456-789)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
+                            <input id="checkout--phone" name="checkout--phone" type="tel" placeholder="Teléfono (123456789)" pattern="[0-9]{9}" required>
                             <input id="checkout--mail" name="checkout--mail" type="email" placeholder="correo@dominio.com" required>
                             <input id="checkout--address" name="checkout--address" type="text" placeholder="Dirección" required>
                             <input id="checkout--city" name="checkout--city" type="text" placeholder="Ciudad" required>
@@ -283,7 +290,7 @@ export class Views {
                         <div class="payment">
                         <h3>Pago</h3>
                             <input id="payment--titular" name="payment--titular" type="text" placeholder="Titular" required>
-                            <input id="payment--number" name="payment--number" type="text" placeholder="Número de tarjeta" maxlength="16" pattern="^[0-9]{16}$" required>
+                            <input id="payment--number" name="payment--number" type="text" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" pattern="^[0-9]{16}$" required>
                             <div>
                                 <select name="month" id="months">
                                     <option hidden selected value="MM">Mes</option>
@@ -330,7 +337,7 @@ export class Views {
         return `
         <header>
             <a class="logo">
-                <img src="./media/logo.png" alt="EzClothes Logo">
+                <img src="./media/logo.png" alt="EzClothes Logo" id="logo-img">
             </a>
             <nav>
                 <!-- Div para el menu hamburguesa -->
@@ -352,6 +359,7 @@ export class Views {
             <div class="login_cart">
                 <i class="fas fa-user"></i>
                 <i class="fas fa-shopping-cart"></i>
+                <i class="fa-solid fa-circle-half-stroke"></i>
             </div>
         </header>`;
     }

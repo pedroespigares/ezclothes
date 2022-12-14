@@ -11,7 +11,7 @@
         font-size: 2rem;
     }
 
-    header .fa-user, header .fa-shopping-cart{
+    header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
         scale: 3;
     }
 
@@ -42,7 +42,7 @@
         font-size: 2rem;
     }
 
-    header .fa-user, header .fa-shopping-cart{
+    header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
         scale: 3;
     }
 

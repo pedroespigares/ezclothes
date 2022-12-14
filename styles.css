@@ -29,6 +29,26 @@
     --box-shadow: 19px 11px 5px -1px rgba(13,13,13,0.44);
 }
 
+body.dark{
+    --button-color: #DD5353;
+    --hover-color: #B73E3E;
+    --background-color: #121212;
+    --text-color: white;
+    --text-font-weight: 400;
+    --title-font-weight: 600;
+    --transition-time: 0.2s;
+    --title-font: 'Montserrat', sans-serif;
+    --box-shadow: 10px 10px 5px 0px rgba(221,83,83,0.34);
+}
+
+body.dark header .logo img{
+    filter: invert(1);
+}
+
+body.dark header ul.menu li a:hover{
+    color: var(--text-color);
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* Estilos por defecto de ciertas etiquetas */
 
@@ -137,7 +157,7 @@ header .logo:hover{
     transition: var(--transition-time);
 }
 
-header .fa-user, header .fa-shopping-cart{
+header .fa-user, header .fa-shopping-cart, header .fa-circle-half-stroke{
     scale: 4;
     color: var(--text-color);
 }
@@ -150,7 +170,7 @@ header .login_cart{
     place-items: center;
 }
 
-header .fa-user:hover, .fa-shopping-cart:hover{
+header .fa-user:hover, .fa-shopping-cart:hover, header .fa-circle-half-stroke:hover{
     color: var(--hover-color);
     transition: var(--transition-time);
     cursor: pointer;
@@ -185,8 +205,8 @@ ul.menu li a{
 
 ul.menu li a:hover{
     background-color: var(--hover-color);
-    color: var(--background-color);
     transition: var(--transition-time);
+    color: var(--background-color);
     cursor: pointer;
     font-weight: 500;
     box-shadow: var(--box-shadow);
@@ -396,7 +416,7 @@ colocando sus elementos mediante otro grid */
 
 footer{
     grid-column: 1 / -1;
-    grid-row: 54 / 64;
+    grid-row: 54 / 70;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
@@ -555,8 +575,8 @@ añadiendo 2% al width de las estrellas */
 }
 
 .lds-ring {
-    display: inline-block;
-    position: absolute;
+    display: none;
+    position: fixed;
     top: calc(50% - 6.4rem);
     left: calc(50% - 6.4rem);
     width: 0.8rem;
@@ -711,6 +731,7 @@ añadiendo 2% al width de las estrellas */
     font-weight: var(--text-font-weight);
     padding-bottom: 2rem;
     text-transform: uppercase;
+    color: var(--text-color);
 }
 
 .product--img:hover{
@@ -734,7 +755,7 @@ añadiendo 2% al width de las estrellas */
 
 #login_signup{
     grid-column: 1 / -1;
-    grid-row: 10 / 62;
+    grid-row: 10 / 64;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -788,19 +809,6 @@ añadiendo 2% al width de las estrellas */
 
 .signup--container p{
     padding-bottom: 2rem;
-}
-
-@keyframes opacity{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-
-.opacitiyAnimation{
-    animation: opacity 1s ease-in-out;
 }
 
 .signup--container p#signup--message, .login--container p#login--message, #NL--message{
@@ -917,6 +925,7 @@ form button:hover{
     padding-bottom: 2rem;
     text-transform: uppercase;
     text-decoration: underline;
+    color: var(--text-color);
 }
 
 .product--info label{
@@ -962,7 +971,7 @@ form button:hover{
 
 #cart{
     grid-column: 1 / -1;
-    grid-row: 15 / 30;
+    grid-row: 15 / 70;
 }
 
 .cart--container{
@@ -1163,7 +1172,7 @@ form button:hover{
 
 #checkout--payment{
     grid-column: 1 / -1;
-    grid-row: 12 / 30;
+    grid-row: 12 / 64;
 
     display: flex;
     flex-direction: column;
@@ -1205,4 +1214,5 @@ form button:hover{
     text-align: center;
     padding-bottom: 2rem;
     font-size: 3rem;
+    color: var(--text-color);
 }
