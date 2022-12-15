@@ -2,7 +2,7 @@
 Simple e-commerce page with a fake store API
 
 ## Enlace en producción
-https://github.com/pedroespigares/ezclothes
+pedroespigares.github.io/ezclothes/
 
 Esta pagina de tienda online utiliza la api de https://fakestoreapi.com/ para trarse los productos.
 
