@@ -161,7 +161,7 @@ $(document).ready(function() {
             .then(json=>controllers.addProductToCart(json, size, cart));
 
         $(this).animate({"background-color": "green"}, 500);
-        $(this).text("Added to cart");
+        $(this).text("Añadido al carrito");
         $(this).effect("bounce", {times: 2}, 1000);
     });
 
