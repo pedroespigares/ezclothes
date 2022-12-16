@@ -5,8 +5,8 @@ export class Controllers{
     }
     
     setIntervalForCarrousel(images){
-        var currentIndex = 0;
-        var interval = setInterval(function() {;
+        let currentIndex = 0;
+        let interval = setInterval(function() {;
             currentIndex++;
             if (currentIndex >= images.length) {
                 currentIndex = 0;
@@ -19,7 +19,7 @@ export class Controllers{
     }
     
     changeImageCarrousel(images, direction) {
-        var currentIndex = 0;
+        let currentIndex = 0;
     
         if(direction == "left"){
             currentIndex--;
@@ -99,7 +99,7 @@ export class Controllers{
     }
     
     addProductToCart(product, size, cart) {
-        var product = {
+        let createdProduct = {
             id: product.id,
             title: product.title,
             price: product.price,
@@ -109,17 +109,17 @@ export class Controllers{
             quantity: 1
         }
     
-        var productExists = false;
+        let productExists = false;
     
         cart.forEach(function(productInCart) {
-            if(productInCart.id == product.id){
+            if(productInCart.id == createdProduct.id){
                 productInCart.quantity++;
                 productExists = true;
             }
         });
     
         if(!productExists){
-            cart.push(product);
+            cart.push(createdProduct);
         }
     
         localStorage.cart = JSON.stringify(cart);

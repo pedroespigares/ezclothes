@@ -106,8 +106,8 @@ input, select{
 /* El container tiene el grid inicial donde se van a posicionar los elementos */
 .container{
     display: grid;
-    grid-template-columns: minmax(min-content, 1fr) repeat(8, minmax(min-content, 16rem) minmax(min-content, 1fr));
-    grid-template-rows: repeat(4, min-content);
+    grid-template-columns: minmax(min-content, 1fr) repeat(auto-fit, minmax(min-content, 16rem)) minmax(min-content, 1fr);
+    grid-template-rows: repeat(auto-fit, min-content);
     grid-row-gap: 1.6rem;
     background-color: var(--background-color);
 }
@@ -127,7 +127,6 @@ header{
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 20vh;
 
     z-index: 100;
     position: fixed;
@@ -223,7 +222,7 @@ en la pagina y le damos su estilo */
 }
 
 #christmas img{
-    width: 100%;
+    max-width: 100%;
 }
 
 #christmas img:hover{
@@ -1036,6 +1035,10 @@ form button:hover{
     border: 1px solid var(--hover-color);
     border-radius: 0.5rem;
     background-color: var(--background-color);
+}
+
+.cart--list li p{
+    font-size: 3rem;
 }
 
 .cart--list li input:focus{
