@@ -242,10 +242,11 @@ export class Views {
                 <h1>Soy Cliente/a</h1>
                 <form class="LI_form">
                     <input id="LI_username" name="LI_username" type="text" placeholder="Nombre de usuario" required>
-                    <input id="LI_psw" name="LI_psw" type="password" placeholder="Contraseña" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+                    <input id="LI_psw" name="LI_psw" type="password" placeholder="Contraseña" required>
                     <a>¿Has olvidado tu contraseña?</a>
                     <a id="activate_SU">¿No tienes cuenta? ¡Regístrate!</a>
                     <p id="login--message">Sesión iniciada</p>
+                    <p id="login--error">Usuario o contraseña incorrectos</p>
                     <button type="submit">Iniciar sesión</button>
                 </form>
             </div>

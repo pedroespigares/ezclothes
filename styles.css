@@ -810,7 +810,7 @@ añadiendo 2% al width de las estrellas */
     padding-bottom: 2rem;
 }
 
-.signup--container p#signup--message, .login--container p#login--message, #NL--message{
+.signup--container p#signup--message, .login--container p#login--message, .login--container p#login--error,#NL--message{
     font-size: 2.2rem;
     font-weight: var(--title-font-weight);
     color: var(--text-color);
@@ -820,6 +820,10 @@ añadiendo 2% al width de las estrellas */
     padding: 1rem 2rem;
     margin-top: 2rem;
     display: none;
+}
+
+.login--container p#login--error{
+    background-color: var(--hover-color);
 }
 
 form {
