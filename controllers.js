@@ -112,7 +112,7 @@ export class Controllers{
         let productExists = false;
     
         cart.forEach(function(productInCart) {
-            if(productInCart.id == createdProduct.id){
+            if(productInCart.id == createdProduct.id && productInCart.size == createdProduct.size){
                 productInCart.quantity++;
                 productExists = true;
             }
