@@ -176,13 +176,7 @@ export class Controllers{
     }
 
     logIn(){
-        fetch('https://fakestoreapi.com/auth/login',{
-            method:'POST',
-            body:JSON.stringify({
-                username: "mor_2314",
-                password: "83r5^_"
-            })
-        })
+        fetch('https://fakestoreapi.com/users')
             .then(res=>res.json())
             .then(json=>this.logInHandler(json));
     }
@@ -212,8 +206,10 @@ export class Controllers{
     }
 
     logInHandler(json){
-        if(json.token == "eyJhbGciOiJIUzI1NiIsInR"){
-            $("#login--message").show(200);
-        }
+        json.forEach(function(user){
+            if(user.username == $("#LI_username").val() && user.password == $("#LI_psw").val()){
+                $("#login--message").show(200);
+            }
+        });
     }
 }
