@@ -18,27 +18,7 @@ export class Controllers{
         }, 5000);
     }
     
-    changeImageCarrousel(images, direction) {
-        let currentIndex = 0;
-    
-        if(direction == "left"){
-            currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = images.length - 1;
-            }
-        } else if(direction == "right"){
-            currentIndex++;
-            if (currentIndex >= images.length) {
-                currentIndex = 0;
-            }
-        }
-    
-        $("#carrousel-img").fadeOut(1000, function() {
-            $(this).attr("src", images[currentIndex]);
-            $(this).fadeIn(1000);
-        });
-    }
-    
+
     changeViewsBetweenCategories(category, views, sort="asc") {
         if(category == "woman"){
             var RealCategory = "women\'s%20clothing";
