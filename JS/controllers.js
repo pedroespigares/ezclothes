@@ -186,12 +186,11 @@ export class Controllers{
     }
 
     logInHandler(json){
-        json.forEach(function(user){
-            if(user.username == $("#LI_username").val() && user.password == $("#LI_psw").val()){
-                $("#login--message").show(200);
-            } else {
-                $("#login--error").show(200);
-            }
-        });
+        let user = json.find(user => user.username == $("#LI_username").val() && user.password == $("#LI_psw").val());
+        if(user){
+            $("#login--message").show(200);
+        } else {
+            $("#login--error").show(200);
+        }
     }
 }
